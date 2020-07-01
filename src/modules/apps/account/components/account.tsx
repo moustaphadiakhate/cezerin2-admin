@@ -1,13 +1,11 @@
-import Paper from "material-ui/Paper"
-import RaisedButton from "material-ui/RaisedButton"
+import { Button, Paper, TextField } from "@material-ui/core"
 import React from "react"
 import { Field, reduxForm } from "redux-form"
-import { TextField } from "redux-form-material-ui"
 import messages from "../../../../lib/text"
 import { CustomToggle } from "../../../../modules/shared/form"
 import style from "./style.css"
 
-const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => (
+const AccountForm = ({ handleSubmit, pristine, submitting }) => (
   <div style={{ maxWidth: 720, width: "100%" }}>
     <div className="gray-title" style={{ margin: "15px 0 15px 20px" }}>
       {messages.account}
@@ -19,25 +17,25 @@ const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => (
         width: "100%",
       }}
     >
-      <Paper style={{ margin: "0px 20px" }} zDepth={1}>
+      <Paper style={{ margin: "0px 20px" }} elevation={1}>
         <div style={{ padding: "10px 30px 30px 30px" }}>
           <Field
             component={TextField}
             fullWidth
             name="email"
-            floatingLabelText={messages.email}
+            label={messages.email}
           />
           <Field
             component={TextField}
             fullWidth
             name="shop_url"
-            floatingLabelText={messages.shopUrl}
+            label={messages.shopUrl}
           />
           <Field
             component={TextField}
             fullWidth
             name="admin_url"
-            floatingLabelText={messages.adminUrl}
+            label={messages.adminUrl}
           />
           <Field
             component={CustomToggle}
@@ -50,13 +48,14 @@ const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => (
           className="buttons-box"
           style={{ display: pristine ? "none" : "block" }}
         >
-          <RaisedButton
+          <Button
             type="submit"
-            label={messages.save}
-            primary
+            color="primary"
             className={style.button}
             disabled={pristine || submitting}
-          />
+          >
+            {messages.save}
+          </Button>
         </div>
       </Paper>
     </form>
