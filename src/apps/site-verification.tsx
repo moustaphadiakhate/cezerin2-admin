@@ -29,20 +29,18 @@ export const SiteVerification = () => {
   const [yandex, setYandex] = useState("")
 
   const fetchSettings = () => {
-    api.apps.settings
-      .retrieve("site-verification")
-      .then(({ json }) => {
-        const appSettings = json
-        if (appSettings) {
-          setGoogle(appSettings.google)
-          setBing(appSettings.bing)
-          setPinterest(appSettings.pinterest)
-          setYandex(appSettings.yandex)
-        }
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    const { json } = api.apps.settings.retrieve("site-verification")
+    try {
+      const appSettings = json
+      if (appSettings) {
+        setGoogle(appSettings.google)
+        setBing(appSettings.bing)
+        setPinterest(appSettings.pinterest)
+        setYandex(appSettings.yandex)
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const updateSettings = () => {
