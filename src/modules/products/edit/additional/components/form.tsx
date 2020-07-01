@@ -1,4 +1,4 @@
-import FlatButton from "material-ui/FlatButton"
+import { Button } from "@material-ui/core"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import IconMenu from "material-ui/IconMenu"
@@ -177,11 +177,7 @@ class ProductsArray extends React.Component {
   }
 
   render() {
-    const {
-      settings,
-      fields,
-      meta: { touched, error, submitFailed },
-    } = this.props
+    const { settings, fields } = this.props
     const { products } = this.state
 
     return (
@@ -318,19 +314,21 @@ const ProductAdditionalForm = ({
           pristine ? "buttons-box-pristine" : "buttons-box-show"
         }`}
       >
-        <FlatButton
-          label={messages.cancel}
+        <Button
           className={style.button}
           onClick={reset}
           disabled={pristine || submitting}
-        />
-        <RaisedButton
+        >
+          {messages.cancel}
+        </Button>
+        <Button
           type="submit"
-          label={messages.save}
-          primary
+          color="primary"
           className={style.button}
           disabled={pristine || submitting}
-        />
+        >
+          {messages.save}
+        </Button>
       </div>
     </Paper>
   </form>
