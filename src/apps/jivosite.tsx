@@ -48,15 +48,18 @@ export const App = () => {
         rows={10}
         value={code}
         onChange={event => setCode(event.target.value)}
-        floatingLabelText="Код чата JivoSite"
-        hintText="<!-- BEGIN JIVOSITE CODE {literal} -->..."
+        label="Код чата JivoSite"
+        helperText="<!-- BEGIN JIVOSITE CODE {literal} -->..."
       />
 
-      <div style={{ textAlign: "right" }}>
-        <Button color="primary" disabled={false} onClick={updateSettings}>
-          {messages.save}
-        </Button>
-      </div>
+      <Button
+        color="primary"
+        disabled={false}
+        onClick={updateSettings}
+        style={{ textAlign: "right" }}
+      >
+        {messages.save}
+      </Button>
     </>
   )
 }
