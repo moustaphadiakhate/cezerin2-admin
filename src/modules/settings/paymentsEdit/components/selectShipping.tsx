@@ -1,50 +1,41 @@
-import React from "react"
-import { Field, reduxForm } from "redux-form"
-import { List, ListItem } from "material-ui/List"
 import Checkbox from "material-ui/Checkbox"
+import { List, ListItem } from "material-ui/List"
+import React, { useEffect, useState } from "react"
 
-export default class SelectShippingMethodsField extends React.Component {
-  constructor(props) {
-    super(props)
+const SelectShippingMethodsField =(props:Readonly<>) =>{\
     const ids = Array.isArray(props.input.value) ? props.input.value : []
-    this.state = {
-      selectedIds: ids,
-    }
-  }
+     const [selectedIds,setSelectedIds] =useState(ids)
 
-  componentWillReceiveProps(nextProps) {
-    const newIds = Array.isArray(nextProps.input.value)
-      ? nextProps.input.value
+  useEffect(() =>{
+    const newIds = Array.isArray(props.input.value)
+      ? props.input.value
       : []
-    if (newIds !== this.state.selectedIds) {
-      this.setState({
-        selectedIds: newIds,
-      })
+    if (newIds !== selectedIds) {
+      setSelectedIds(newIds)
     }
-  }
+  },[props.input])
 
-  onCheckboxChecked = methodId => {
-    let ids = this.state.selectedIds
+  const  onCheckboxChecked = methodId => {
+    let ids = selectedIds
     if (ids.includes(methodId)) {
       ids = ids.filter(id => id !== methodId)
     } else {
       ids.push(methodId)
     }
-    this.setState({ selectedIds: ids })
-    this.props.input.onChange(ids)
+  setSelectedIds(ids)
+    props.input.onChange(ids)
   }
 
-  isCheckboxChecked = methodId => this.state.selectedIds.includes(methodId)
+  const isCheckboxChecked = methodId => selectedIds.includes(methodId)
 
-  render() {
-    const items = this.props.shippingMethods.map(method => (
+    const items = props.shippingMethods.map(method => (
       <ListItem
         key={method.id}
         leftCheckbox={
           <Checkbox
-            checked={this.isCheckboxChecked(method.id)}
-            onCheck={(e, isChecked) => {
-              this.onCheckboxChecked(method.id)
+            checked={isCheckboxChecked(method.id)}
+            onCheck={() => {
+              onCheckboxChecked(method.id)
             }}
           />
         }
@@ -55,4 +46,5 @@ export default class SelectShippingMethodsField extends React.Component {
 
     return <List>{items}</List>
   }
-}
+
+  export default SelectShippingMethodsField
