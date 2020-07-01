@@ -19,12 +19,6 @@
     "type": "git",
     "url": "https://github.com/Cezerin2/cezerin2-admin"
   },
-  "lint-staged": {
-    "*": [
-      "prettier --write .",
-      "git add ."
-    ]
-  },
   "dependencies": {
     "@date-io/moment": "^2.6.0",
     "@editorjs/editorjs": "^2.18.0",
@@ -86,7 +80,6 @@
     "css-loader": "^3.6.0",
     "cssnano": "^4.1.10",
     "html-webpack-plugin": "^4.3.0",
-    "lint-staged": "^10.2.11",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "postcss-loader": "^3.0.0",
@@ -103,13 +96,9 @@
     "builda": "react-scripts build",
     "test": "react-scripts test",
     "compile": "tsc",
-    "dev": "tsc -w && yarn start",
     "build": "webpack --config webpack.config.js --mode production",
     "build:watch": "webpack --config webpack.config.js --mode development --watch",
-    "start": "webpack-dev-server  --open --config webpack.config.js --mode development --port 3002",
-    "lint": "eslint --fix .",
-    "prettier": "prettier --write \"src/**/*.js\"",
-    "precommit": "lint-staged"
+    "start": "webpack-dev-server  --open --config webpack.config.js --mode development --port 3002"
   },
   "eslintConfig": {
     "extends": "react-app"
