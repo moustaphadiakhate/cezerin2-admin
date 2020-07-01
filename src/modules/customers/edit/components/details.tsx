@@ -1,51 +1,66 @@
-import React from "react"
+import React, { useEffect } from "react"
 import CustomerAddresses from "./addresses"
 import CustomerOrders from "./orders"
 import CustomerSummary from "./summary"
 
-export default class CustomerDetails extends React.Component {
-  componentDidMount() {
-    this.props.fetchData()
-  }
+const CustomerDetails = (
+  props: Readonly<{
+    customer
+    settings
+    onCustomerSummaryUpdate
+    onUpdateAddress
+    onDeleteAddress
+    onSetDefaultBillingAddress
+    onSetDefaultShippingAddress
+    fetchData: Function
+    clearData: Function
+  }>
+) => {
+  const {
+    customer,
+    settings,
+    onCustomerSummaryUpdate,
+    onUpdateAddress,
+    onDeleteAddress,
+    onSetDefaultBillingAddress,
+    onSetDefaultShippingAddress,
+    fetchData,
+    clearData,
+  } = props
 
-  componentWillUnmount() {
-    this.props.clearData()
-  }
+  useEffect(() => {
+    fetchData()
+  }, [])
 
-  render() {
-    const {
-      customer,
-      settings,
-      onCustomerSummaryUpdate,
-      onUpdateAddress,
-      onDeleteAddress,
-      onSetDefaultBillingAddress,
-      onSetDefaultShippingAddress,
-    } = this.props
-    if (!customer) return <br />
+  useEffect(() => {
+    return () => clearData()
+  }, [])
 
-    return (
-      <div className="row row--no-gutter col-full-height">
-        <div className="col-xs-12 col-sm-5 col-md-4 col--no-gutter scroll col-full-height">
-          <CustomerSummary
-            customer={customer}
-            settings={settings}
-            onCustomerSummaryUpdate={onCustomerSummaryUpdate}
-          />
+  if (!customer) return <br />
 
-          <CustomerAddresses
-            customer={customer}
-            settings={settings}
-            onUpdateAddress={onUpdateAddress}
-            onDeleteAddress={onDeleteAddress}
-            onSetDefaultBillingAddress={onSetDefaultBillingAddress}
-            onSetDefaultShippingAddress={onSetDefaultShippingAddress}
-          />
-        </div>
-        <div className="col-xs-12 col-sm-7 col-md-8 col--no-gutter scroll col-full-height">
-          <CustomerOrders customerId={customer.id} settings={settings} />
-        </div>
+  return (
+    <div className="row row--no-gutter col-full-height">
+      <div className="col-xs-12 col-sm-5 col-md-4 col--no-gutter scroll col-full-height">
+        <CustomerSummary
+          customer={customer}
+          settings={settings}
+          onCustomerSummaryUpdate={onCustomerSummaryUpdate}
+        />
+
+        <CustomerAddresses
+          customer={customer}
+          settings={settings}
+          onUpdateAddress={onUpdateAddress}
+          onDeleteAddress={onDeleteAddress}
+          onSetDefaultBillingAddress={onSetDefaultBillingAddress}
+          onSetDefaultShippingAddress={onSetDefaultShippingAddress}
+        />
       </div>
-    )
-  }
+      <div className="col-xs-12 col-sm-7 col-md-8 col--no-gutter scroll col-full-height">
+        <CustomerOrders customerId={customer.id} settings={settings} />
+      </div>
+    </div>
+  )
 }
+
+export default CustomerDetails
