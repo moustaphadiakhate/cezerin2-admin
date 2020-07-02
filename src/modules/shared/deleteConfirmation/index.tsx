@@ -9,6 +9,7 @@ const ConfirmationDialog = (
     itemName
     onDelete
     onCancel
+    open
   }>
 ) => {
   const [open, setOpen] = useState(props.open)
