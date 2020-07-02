@@ -1,24 +1,19 @@
 import moment from "moment"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import api from "../../../lib/api"
 import messages from "../../../lib/text"
 import BarChart from "./barChart"
 import * as utils from "./utils"
 
-export default class OrdersBar extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      ordersData: null,
-      salesData: null,
-    }
-  }
+const OrdersBar = () => {
+  const [ordersData, setOrdersData] = useState(null)
+  const [salesData, setSalesData] = useState(null)
 
-  componentDidMount() {
-    this.fetchData()
-  }
+  useEffect(() => {
+    fetchData()
+  }, [])
 
-  fetchData = () => {
+  const fetchData = () => {
     const filter = {
       draft: false,
       cancelled: false,
@@ -36,28 +31,28 @@ export default class OrdersBar extends React.Component {
         const reportData = utils.getReportDataFromOrders(json)
         const ordersData = utils.getOrdersDataFromReportData(reportData)
         const salesData = utils.getSalesDataFromReportData(reportData)
-        this.setState({ ordersData, salesData })
+        setOrdersData(ordersData)
+        setSalesData(salesData)
       })
       .catch(error => {
-        console.log(error)
+        console.error(error)
       })
   }
 
-  render() {
-    const { ordersData, salesData } = this.state
-    return (
-      <>
-        <BarChart
-          data={ordersData}
-          legendDisplay
-          title={messages.drawer_orders}
-        />
-        <BarChart
-          data={salesData}
-          legendDisplay={false}
-          title={messages.salesReport}
-        />
-      </>
-    )
-  }
+  return (
+    <>
+      <BarChart
+        data={ordersData}
+        legendDisplay
+        title={messages.drawer_orders}
+      />
+      <BarChart
+        data={salesData}
+        legendDisplay={false}
+        title={messages.salesReport}
+      />
+    </>
+  )
 }
+
+export default OrdersBar
