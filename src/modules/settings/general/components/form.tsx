@@ -36,9 +36,12 @@ const GeneralSettings = (
   }
 
   const taxItems = []
-  for (const key in data.taxs) {
+  for (const key in data.currencies) {
     taxItems.push(
-      <MenuItem value={key} key={key}>{`${key} - ${data.taxs[key]}`}</MenuItem>
+      <MenuItem
+        value={key}
+        key={key}
+      >{`${key} - ${data.currencies[key]}`}</MenuItem>
     )
   }
 
@@ -76,9 +79,8 @@ const GeneralSettings = (
                 to="/settings/general/logo"
                 style={{ textDecoration: "none" }}
               >
-                <ListItem
-                  rightIcon={<KeyboardArrowRight className="material-icons" />}
-                >
+                <ListItem>
+                  <KeyboardArrowRight className="material-icons" />
                   {messages.logo}
                 </ListItem>
               </Link>
