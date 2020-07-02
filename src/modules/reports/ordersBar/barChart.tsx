@@ -1,9 +1,19 @@
-import React from "react"
 import Paper from "material-ui/Paper"
+import React from "react"
 import { Bar } from "react-chartjs-2"
 import style from "./style.css"
 
-const BarChart = ({ data, title, subTitle, legendDisplay }) => (
+const BarChart = ({
+  data,
+  title,
+  subTitle,
+  legendDisplay,
+}: {
+  data
+  title
+  subTitle
+  legendDisplay
+}) => (
   <div className="row row--no-gutter">
     <div className="col--no-gutter col-xs-12">
       <Paper className="paper-box" zDepth={1}>
