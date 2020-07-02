@@ -1,9 +1,9 @@
 import { connect } from "react-redux"
 import {
-  exportRequest,
   exportReceive,
-  installRequest,
+  exportRequest,
   installReceive,
+  installRequest,
 } from "../actions"
 import Form from "./components/form"
 
@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
   installInProcess: state.settings.installInProcess,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Function) => ({
   exportRequest: () => {
     dispatch(exportRequest())
   },
