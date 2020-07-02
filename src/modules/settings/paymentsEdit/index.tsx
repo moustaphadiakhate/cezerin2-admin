@@ -1,10 +1,10 @@
 import { connect } from "react-redux"
 import {
-  fetchPaymentMethod,
-  updatePaymentMethod,
-  fetchShippingMethods,
   createPaymentMethod,
+  fetchPaymentMethod,
+  fetchShippingMethods,
   receivePaymentMethod,
+  updatePaymentMethod,
 } from "../actions"
 import Form from "./components/form"
 
@@ -23,7 +23,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch: Function, ownProps: any) => ({
   onLoad: () => {
     const { methodId } = ownProps.match.params
     if (methodId) {
@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     }
     dispatch(fetchShippingMethods())
   },
-  onSubmit: method => {
+  onSubmit: (method: any) => {
     if (
       method.conditions &&
       method.conditions.countries &&
