@@ -4,65 +4,69 @@ import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 import messages from "../../../../lib/text"
 
-const EmailSettings =(props:Readonly<{emailSettings,onLoad}>) {
+const EmailSettings = (props: Readonly<{ emailSettings; onLoad }>) => {
+  const { emailSettings, onLoad } = props
 
-  const { emailSettings,onLoad } = props
-
-  useEffect(()=> {
+  useEffect(() => {
     onLoad()
-  },[])
+  }, [])
 
-    const smtpHint =
-      emailSettings && emailSettings.host && emailSettings.host.length > 0
-        ? emailSettings.host
-        : "none"
+  const smtpHint =
+    emailSettings && emailSettings.host && emailSettings.host.length > 0
+      ? emailSettings.host
+      : "none"
 
-    return (
-      <>
-        <Paper className="paper-box" elevation={1}>
-          <div style={{ width: "100%" }}>
-            <List style={{ padding: 0 }}>
-              <Link
-                to="/settings/email/smtp"
-                style={{ textDecoration: "none" }}
-              >
-                <ListItem
-                > <KeyboardArrowRight className="material-icons"/> <div className="row">
-                <div className="col-xs-6">
-                  {messages.settings_smtpSettings}
+  return (
+    <>
+      <Paper className="paper-box" elevation={1}>
+        <div style={{ width: "100%" }}>
+          <List style={{ padding: 0 }}>
+            <Link to="/settings/email/smtp" style={{ textDecoration: "none" }}>
+              <ListItem>
+                {" "}
+                <KeyboardArrowRight className="material-icons" />{" "}
+                <div className="row">
+                  <div className="col-xs-6">
+                    {messages.settings_smtpSettings}
+                  </div>
+                  <div
+                    className="col-xs-6"
+                    style={{ color: "rgba(0, 0, 0, 0.4)" }}
+                  >
+                    {smtpHint}
+                  </div>
                 </div>
-                <div
-                  className="col-xs-6"
-                  style={{ color: "rgba(0, 0, 0, 0.4)" }}
-                >
-                  {smtpHint}
-                </div>
-              </div></ListItem>
-              </Link>
-            </List>
-          </div>
-        </Paper>
-        <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
-          {messages.settings_emailTemplates}
+              </ListItem>
+            </Link>
+          </List>
         </div>
-        <Paper className="paper-box" elevation={1}>
-          <div style={{ width: "100%" }}>
-            <List style={{ padding: 0 }}>
-              <Link
-                to="/settings/email/templates/order_confirmation"
-                style={{ textDecoration: "none" }}
-              >
-                <ListItem
-                > <KeyboardArrowRight className="material-icons"/>{messages.settings_orderConfirmation}</ListItem>
-              </Link>
-              <Link
-                to="/settings/email/templates/register_doi_en"
-                style={{ textDecoration: "none" }}
-              >
-                <ListItem
-                ><KeyboardArrowRight className="material-icons"/>{messages.settings_customerRegistration}</ListItem>
-              </Link>
-              {/* <Link
+      </Paper>
+      <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
+        {messages.settings_emailTemplates}
+      </div>
+      <Paper className="paper-box" elevation={1}>
+        <div style={{ width: "100%" }}>
+          <List style={{ padding: 0 }}>
+            <Link
+              to="/settings/email/templates/order_confirmation"
+              style={{ textDecoration: "none" }}
+            >
+              <ListItem>
+                {" "}
+                <KeyboardArrowRight className="material-icons" />
+                {messages.settings_orderConfirmation}
+              </ListItem>
+            </Link>
+            <Link
+              to="/settings/email/templates/register_doi_en"
+              style={{ textDecoration: "none" }}
+            >
+              <ListItem>
+                <KeyboardArrowRight className="material-icons" />
+                {messages.settings_customerRegistration}
+              </ListItem>
+            </Link>
+            {/* <Link
 								to="/settings/email/templates/register_doi_de"
 								style={{ textDecoration: 'none' }}
 							>
@@ -88,14 +92,16 @@ const EmailSettings =(props:Readonly<{emailSettings,onLoad}>) {
 									primaryText={messages.settings_customerRegistration}
 								/>
 							</Link> */}
-              <Link
-                to="/settings/email/templates/forgot_password_en"
-                style={{ textDecoration: "none" }}
-              >
-                <ListItem
-                ><KeyboardArrowRight className="material-icons"/>{messages.settings_customerRecovery}</ListItem>
-              </Link>
-              {/* <Link
+            <Link
+              to="/settings/email/templates/forgot_password_en"
+              style={{ textDecoration: "none" }}
+            >
+              <ListItem>
+                <KeyboardArrowRight className="material-icons" />
+                {messages.settings_customerRecovery}
+              </ListItem>
+            </Link>
+            {/* <Link
 								to="/settings/email/templates/forgot_password_de"
 								style={{ textDecoration: 'none' }}
 							>
@@ -121,11 +127,11 @@ const EmailSettings =(props:Readonly<{emailSettings,onLoad}>) {
 									primaryText={messages.settings_customerRecovery}
 								/>
 							</Link> */}
-            </List>
-          </div>
-        </Paper>
-      </>
-    )
-  }
+          </List>
+        </div>
+      </Paper>
+    </>
+  )
+}
 
 export default EmailSettings
