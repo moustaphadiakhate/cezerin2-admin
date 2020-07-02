@@ -1,13 +1,16 @@
 import { connect } from "react-redux"
 import {
-  fetchWebhook,
-  updateWebhook,
   createWebhook,
+  fetchWebhook,
   receiveWebhook,
+  updateWebhook,
 } from "../../actions"
 import Form from "./components/form"
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (
+  state: { settings: { webhookEdit: string } },
+  ownProps
+) => {
   const { webhookId } = ownProps.match.params
   return {
     webhookId,
@@ -15,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch: Function, ownProps: any) => ({
   onLoad: () => {
     const { webhookId } = ownProps.match.params
     if (webhookId) {
@@ -24,7 +27,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       dispatch(receiveWebhook({ enabled: true }))
     }
   },
-  onSubmit: webhook => {
+  onSubmit: (webhook: { id: string }) => {
     if (webhook.id) {
       dispatch(updateWebhook(webhook))
     } else {
