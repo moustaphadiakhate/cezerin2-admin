@@ -10,21 +10,16 @@ const PageItem = ({ page }) => {
     <>
       <Divider />
       <Link to={`/pages/${page.id}`} style={{ textDecoration: "none" }}>
-        <ListItem
-          rightIcon={<KeyboardArrowRight className="material-icons" />}
-          leftIcon={
-            page.is_system ? <LockOutlined className="material-icons" /> : null
-          }
-          style={!page.enabled ? { color: "rgba(0, 0, 0, 0.3)" } : {}}
-          primaryText={
-            <div className="row">
-              <div className="col-xs-8">{page.meta_title}</div>
-              <div className="col-xs-4" style={{ color: "rgba(0, 0, 0, 0.4)" }}>
-                {tags}
-              </div>
+        <ListItem style={!page.enabled ? { color: "rgba(0, 0, 0, 0.3)" } : {}}>
+          {page.is_system ? <LockOutlined className="material-icons" /> : null}{" "}
+          <div className="row">
+            <div className="col-xs-8">{page.meta_title}</div>
+            <div className="col-xs-4" style={{ color: "rgba(0, 0, 0, 0.4)" }}>
+              {tags}
             </div>
-          }
-        />
+          </div>
+          <KeyboardArrowRight className="material-icons" />
+        </ListItem>
       </Link>
     </>
   )
