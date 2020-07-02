@@ -2,11 +2,11 @@ import { connect } from "react-redux"
 import { fetchCheckoutFields } from "../actions"
 import Form from "./components/form"
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: { settings: { checkoutFields: string } }) => ({
   checkoutFields: state.settings.checkoutFields,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Function) => ({
   onLoad: () => {
     dispatch(fetchCheckoutFields())
   },
