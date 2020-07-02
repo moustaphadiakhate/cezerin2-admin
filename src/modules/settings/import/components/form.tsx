@@ -21,7 +21,7 @@ const ImportSettings = (props: Readonly<{ onLoad }>) => {
               style={{ textDecoration: "none" }}
             >
               <ListItem>
-                <KeyboardArrowRight className="material-icons" />{" "}
+                <KeyboardArrowRight className="material-icons" />
                 <div className="row">
                   <div className="col-xs-6">
                     {messages.settings_spreadsheet}
