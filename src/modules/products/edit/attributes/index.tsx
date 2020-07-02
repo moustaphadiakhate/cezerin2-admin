@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
   initialValues: state.products.editProduct,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Function) => ({
   onSubmit: values => {
     dispatch(
       updateProduct({
