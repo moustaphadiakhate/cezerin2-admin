@@ -1,7 +1,5 @@
-import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
-import { List, ListItem } from "material-ui/List"
-import Paper from "material-ui/Paper"
+import { Divider, List, ListItem, Paper } from "@material-ui/core"
+import { KeyboardArrowRight } from "@material-ui/icons"
 import moment from "moment"
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
@@ -74,25 +72,21 @@ const CustomerOrder = ({ order, settings }) => {
     <>
       <Divider />
       <Link to={`/order/${order.id}`} style={{ textDecoration: "none" }}>
-        <ListItem
-          rightIcon={
-            <FontIcon className="material-icons">keyboard_arrow_right</FontIcon>
-          }
-          primaryText={
-            <div className="row">
-              <div className="col-xs-2">{order.number}</div>
-              <div className="col-xs-3" style={{ color: "rgba(0, 0, 0, 0.4)" }}>
-                {dateCreatedFormated}
-              </div>
-              <div className="col-xs-4">
-                <div className={style.states}>{states}</div>
-              </div>
-              <div className="col-xs-3" style={{ textAlign: "right" }}>
-                {grandTotalFormatted}
-              </div>
+        <ListItem>
+          <div className="row">
+            <div className="col-xs-2">{order.number}</div>
+            <div className="col-xs-3" style={{ color: "rgba(0, 0, 0, 0.4)" }}>
+              {dateCreatedFormated}
             </div>
-          }
-        />
+            <div className="col-xs-4">
+              <div className={style.states}>{states}</div>
+            </div>
+            <div className="col-xs-3" style={{ textAlign: "right" }}>
+              {grandTotalFormatted}
+            </div>
+          </div>
+          <KeyboardArrowRight className="material-icons" />
+        </ListItem>
       </Link>
     </>
   )
@@ -119,7 +113,7 @@ const CustomerOrders = props => {
   }
 
   return (
-    <Paper className="paper-box" zDepth={1}>
+    <Paper className="paper-box" elevation={1}>
       <div
         className="blue-title"
         style={{ paddingLeft: 16, paddingBottom: 16 }}
