@@ -1,8 +1,29 @@
 import { Button, Dialog, DialogActions } from "@material-ui/core"
 import React, { useEffect, useState } from "react"
 
-const ConfirmationDialog = (props: Readonly<>) => {
+const ConfirmationDialog = (
+  props: Readonly<{
+    title
+    description
+    submitLabel
+    cancelLabel
+    modal
+    onCancel
+    onSubmit
+    open
+  }>
+) => {
   const [open, setOpen] = useState(props.open)
+
+  const {
+    title,
+    description,
+    submitLabel,
+    cancelLabel,
+    modal = false,
+    onCancel,
+    onSubmit,
+  } = props
 
   useEffect(() => {
     setOpen(props.open)
@@ -10,19 +31,17 @@ const ConfirmationDialog = (props: Readonly<>) => {
 
   const handleCancel = () => {
     setOpen(false)
-    if (props.onCancel) {
-      props.onCancel()
+    if (onCancel) {
+      onCancel()
     }
   }
 
   const handleSubmit = () => {
     setOpen(false)
-    if (props.onSubmit) {
-      props.onSubmit()
+    if (onSubmit) {
+      onSubmit()
     }
   }
-
-  const { title, description, submitLabel, cancelLabel, modal = false } = props
 
   return (
     <Dialog
