@@ -1,17 +1,17 @@
-import FontIcon from "material-ui/FontIcon"
-import { List, ListItem } from "material-ui/List"
-import Paper from "material-ui/Paper"
-import React from "react"
+import { List, ListItem, Paper } from "@material-ui/core"
+import { KeyboardArrowRight } from "@material-ui/icons"
+import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 import messages from "../../../../lib/text"
 
-export default class EmailSettings extends React.Component {
-  componentDidMount() {
-    this.props.onLoad()
-  }
+const EmailSettings =(props:Readonly<{emailSettings,onLoad}>) {
 
-  render() {
-    const { emailSettings } = this.props
+  const { emailSettings,onLoad } = props
+
+  useEffect(()=> {
+    onLoad()
+  },[])
+
     const smtpHint =
       emailSettings && emailSettings.host && emailSettings.host.length > 0
         ? emailSettings.host
@@ -19,7 +19,7 @@ export default class EmailSettings extends React.Component {
 
     return (
       <>
-        <Paper className="paper-box" zDepth={1}>
+        <Paper className="paper-box" elevation={1}>
           <div style={{ width: "100%" }}>
             <List style={{ padding: 0 }}>
               <Link
@@ -27,25 +27,17 @@ export default class EmailSettings extends React.Component {
                 style={{ textDecoration: "none" }}
               >
                 <ListItem
-                  rightIcon={
-                    <FontIcon className="material-icons">
-                      keyboard_arrow_right
-                    </FontIcon>
-                  }
-                  primaryText={
-                    <div className="row">
-                      <div className="col-xs-6">
-                        {messages.settings_smtpSettings}
-                      </div>
-                      <div
-                        className="col-xs-6"
-                        style={{ color: "rgba(0, 0, 0, 0.4)" }}
-                      >
-                        {smtpHint}
-                      </div>
-                    </div>
-                  }
-                />
+                > <KeyboardArrowRight className="material-icons"/> <div className="row">
+                <div className="col-xs-6">
+                  {messages.settings_smtpSettings}
+                </div>
+                <div
+                  className="col-xs-6"
+                  style={{ color: "rgba(0, 0, 0, 0.4)" }}
+                >
+                  {smtpHint}
+                </div>
+              </div></ListItem>
               </Link>
             </List>
           </div>
@@ -53,7 +45,7 @@ export default class EmailSettings extends React.Component {
         <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
           {messages.settings_emailTemplates}
         </div>
-        <Paper className="paper-box" zDepth={1}>
+        <Paper className="paper-box" elevation={1}>
           <div style={{ width: "100%" }}>
             <List style={{ padding: 0 }}>
               <Link
@@ -61,26 +53,14 @@ export default class EmailSettings extends React.Component {
                 style={{ textDecoration: "none" }}
               >
                 <ListItem
-                  rightIcon={
-                    <FontIcon className="material-icons">
-                      keyboard_arrow_right
-                    </FontIcon>
-                  }
-                  primaryText={messages.settings_orderConfirmation}
-                />
+                > <KeyboardArrowRight className="material-icons"/>{messages.settings_orderConfirmation}</ListItem>
               </Link>
               <Link
                 to="/settings/email/templates/register_doi_en"
                 style={{ textDecoration: "none" }}
               >
                 <ListItem
-                  rightIcon={
-                    <FontIcon className="material-icons">
-                      keyboard_arrow_right
-                    </FontIcon>
-                  }
-                  primaryText={messages.settings_customerRegistration}
-                />
+                ><KeyboardArrowRight className="material-icons"/>{messages.settings_customerRegistration}</ListItem>
               </Link>
               {/* <Link
 								to="/settings/email/templates/register_doi_de"
@@ -113,13 +93,7 @@ export default class EmailSettings extends React.Component {
                 style={{ textDecoration: "none" }}
               >
                 <ListItem
-                  rightIcon={
-                    <FontIcon className="material-icons">
-                      keyboard_arrow_right
-                    </FontIcon>
-                  }
-                  primaryText={messages.settings_customerRecovery}
-                />
+                ><KeyboardArrowRight className="material-icons"/>{messages.settings_customerRecovery}</ListItem>
               </Link>
               {/* <Link
 								to="/settings/email/templates/forgot_password_de"
@@ -153,4 +127,5 @@ export default class EmailSettings extends React.Component {
       </>
     )
   }
-}
+
+export default EmailSettings
