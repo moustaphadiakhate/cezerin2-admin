@@ -1,7 +1,6 @@
-import FontIcon from "material-ui/FontIcon"
-import IconButton from "material-ui/IconButton"
+import { IconButton } from "@material-ui/core"
+import { Link } from "@reach/router"
 import React from "react"
-import { Link } from "react-router-dom"
 import messages from "../../../../lib/text"
 
 const Buttons = () => (
@@ -12,9 +11,7 @@ const Buttons = () => (
         tooltipPosition="bottom-left"
         tooltip={messages.settings_addShippingMethod}
       >
-        <FontIcon color="#fff" className="material-icons">
-          add
-        </FontIcon>
+        <FontIcon color="primary" className="material-icons" />
       </IconButton>
     </Link>
   </span>
