@@ -8,21 +8,21 @@ function requestCategories() {
   }
 }
 
-function receiveCategories(items) {
+function receiveCategories(items: string) {
   return {
     type: t.CATEGORIES_RECEIVE,
     items,
   }
 }
 
-function receiveErrorCategories(error) {
+function receiveErrorCategories(error: string) {
   return {
     type: t.CATEGORIES_FAILURE,
     error,
   }
 }
 
-export function selectCategory(id) {
+export function selectCategory(id: string) {
   return {
     type: t.CATEGORIES_SELECT,
     selectedId: id,
@@ -35,7 +35,7 @@ export function deselectCategory() {
   }
 }
 
-function requestUpdateCategory(id) {
+function requestUpdateCategory() {
   return {
     type: t.CATEGORY_UPDATE_REQUEST,
   }
@@ -47,33 +47,33 @@ function receiveUpdateCategory() {
   }
 }
 
-function errorUpdateCategory(error) {
+function errorUpdateCategory(error: string) {
   return {
     type: t.CATEGORY_UPDATE_FAILURE,
     error,
   }
 }
 
-function successCreateCategory(id) {
+function successCreateCategory() {
   return {
     type: t.CATEGORY_CREATE_SUCCESS,
   }
 }
 
-function successDeleteCategory(id) {
+function successDeleteCategory() {
   return {
     type: t.CATEGORY_DELETE_SUCCESS,
   }
 }
 
-function successMoveUpDownCategory(newPosition) {
+function successMoveUpDownCategory(newPosition: string) {
   return {
     type: t.CATEGORY_MOVE_UPDOWN_SUCCESS,
     position: newPosition,
   }
 }
 
-function successReplaceCategory(newParentId) {
+function successReplaceCategory() {
   return {
     type: t.CATEGORY_REPLACE_SUCCESS,
   }
@@ -129,10 +129,10 @@ export function fetchCategoriesIfNeeded() {
 
 function sendUpdateCategory(id, data) {
   return dispatch => {
-    dispatch(requestUpdateCategory(id))
+    dispatch(requestUpdateCategory())
     return api.productCategories
       .update(id, data)
-      .then(({ status, json }) => {
+      .then(() => {
         dispatch(receiveUpdateCategory())
         dispatch(fetchCategories())
       })
@@ -143,11 +143,11 @@ function sendUpdateCategory(id, data) {
 }
 
 export function updateCategory(data) {
-  return (dispatch, getState) => dispatch(sendUpdateCategory(data.id, data))
+  return dispatch => dispatch(sendUpdateCategory(data.id, data))
 }
 
 export function createCategory() {
-  return (dispatch, getState) =>
+  return dispatch =>
     api.productCategories
       .create({ enabled: false })
       .then(({ status, json }) => {
@@ -182,13 +182,13 @@ export function deleteImage() {
   }
 }
 
-export function deleteCategory(id) {
-  return (dispatch, getState) =>
+export function deleteCategory() {
+  return (dispatch: Function) =>
     api.productCategories
       .delete(id)
       .then(({ status, json }) => {
         if (status === 200) {
-          dispatch(successDeleteCategory(id))
+          dispatch(successDeleteCategory())
           dispatch(deselectCategory())
           dispatch(fetchCategories())
         } else {
