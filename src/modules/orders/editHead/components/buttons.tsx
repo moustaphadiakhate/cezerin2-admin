@@ -8,8 +8,7 @@ import messages from "../../../../lib/text"
 import ConfirmationDialog from "../../../../modules/shared/confirmation"
 import DeleteConfirmation from "../../../../modules/shared/deleteConfirmation"
 import ProductSearchDialog from "../../../../modules/shared/productSearch"
-
-export default class Buttons extends React.Component {
+class Buttons extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -197,3 +196,5 @@ export default class Buttons extends React.Component {
     return <span />
   }
 }
+
+export default Buttons
