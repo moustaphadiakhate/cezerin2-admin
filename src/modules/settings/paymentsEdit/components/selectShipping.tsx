@@ -1,5 +1,4 @@
-import Checkbox from "material-ui/Checkbox"
-import { List, ListItem } from "material-ui/List"
+import { Checkbox, List, ListItem } from "@material-ui/core"
 import React, { useEffect, useState } from "react"
 
 const SelectShippingMethodsField = (
@@ -29,19 +28,16 @@ const SelectShippingMethodsField = (
   const isCheckboxChecked = methodId => selectedIds.includes(methodId)
 
   const items = props.shippingMethods.map(method => (
-    <ListItem
-      key={method.id}
-      leftCheckbox={
-        <Checkbox
-          checked={isCheckboxChecked(method.id)}
-          onCheck={() => {
-            onCheckboxChecked(method.id)
-          }}
-        />
-      }
-      primaryText={method.name}
-      secondaryText={method.description}
-    />
+    <ListItem key={method.id}>
+      <Checkbox
+        checked={isCheckboxChecked(method.id)}
+        onCheck={() => {
+          onCheckboxChecked(method.id)
+        }}
+      />
+      {method.name}
+      {method.description}
+    </ListItem>
   ))
 
   return <List>{items}</List>
