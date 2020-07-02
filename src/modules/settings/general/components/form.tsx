@@ -1,4 +1,5 @@
 import {
+  Button,
   Divider,
   List,
   ListItem,
@@ -494,13 +495,14 @@ const GeneralSettings = (
           </div>
         </div>
         <div className="buttons-box">
-          <RaisedButton
+          <Button
             type="submit"
-            label={messages.save}
-            primary
+            color="primary"
             className={style.button}
             disabled={pristine || submitting}
-          />
+          >
+            {messages.save}
+          </Button>
         </div>
       </Paper>
     </form>
