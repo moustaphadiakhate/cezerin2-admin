@@ -8,7 +8,7 @@ import messages from "../../../../lib/text"
 import CategorySelect from "../../../../modules/productCategories/select"
 import DeleteConfirmation from "../../../../modules/shared/deleteConfirmation"
 
-export default class Buttons extends React.Component {
+class Buttons extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -150,3 +150,4 @@ export default class Buttons extends React.Component {
     )
   }
 }
+export default Buttons

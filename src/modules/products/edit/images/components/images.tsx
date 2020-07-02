@@ -7,7 +7,7 @@ import React from "react"
 import messages from "../../../../../lib/text"
 import Gallery from "../../../../../modules/shared/imageUploadMultiple"
 
-export default class ProductImages extends React.Component {
+class ProductImages extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -100,3 +100,4 @@ export default class ProductImages extends React.Component {
     )
   }
 }
+export default ProductImages

@@ -9,7 +9,7 @@ import GroupSelect from "../../../../modules/customerGroups/select"
 import DeleteConfirmation from "../../../../modules/shared/deleteConfirmation"
 import Search from "./search"
 
-export default class Buttons extends React.Component {
+class Buttons extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -148,3 +148,4 @@ export default class Buttons extends React.Component {
     )
   }
 }
+export default Buttons

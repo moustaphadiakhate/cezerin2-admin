@@ -7,7 +7,7 @@ import messages from "../../../../lib/text"
 import style from "./style.css"
 import SummaryForm from "./summaryForm.js"
 
-export default class CustomerSummary extends React.Component {
+class CustomerSummary extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -105,3 +105,4 @@ export default class CustomerSummary extends React.Component {
     )
   }
 }
+export default CustomerSummary

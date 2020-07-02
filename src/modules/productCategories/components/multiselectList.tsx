@@ -46,7 +46,7 @@ class Item extends React.PureComponent {
   }
 }
 
-export default class Categories extends React.Component {
+class Categories extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -84,3 +84,4 @@ export default class Categories extends React.Component {
     return <List>{rows}</List>
   }
 }
+export default Categories

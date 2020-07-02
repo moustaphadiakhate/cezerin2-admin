@@ -23,7 +23,7 @@ const styles = {
   },
 }
 
-export default class Theme extends React.Component {
+class Theme extends React.Component {
   onExportClick() {
     this.props.exportRequest()
     api.theme.export().then(({ satus, json }) => {
@@ -112,3 +112,4 @@ export default class Theme extends React.Component {
     )
   }
 }
+export default Theme

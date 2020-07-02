@@ -28,7 +28,7 @@ import WebhooksEditHead from "../../../modules/settings/webhooks/edit/head"
 import WebhooksListHead from "../../../modules/settings/webhooks/list/head"
 import DrawerMenu from "./drawer"
 
-export default class AppBarTop extends React.Component {
+class AppBarTop extends React.Component {
   constructor(props) {
     super(props)
     this.state = { open: false }
@@ -683,3 +683,4 @@ export default class AppBarTop extends React.Component {
     )
   }
 }
+export default AppBarTop
