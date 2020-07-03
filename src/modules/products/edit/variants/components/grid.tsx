@@ -1,35 +1,19 @@
+import { Button, IconButton, MenuItem, Paper } from "@material-ui/core"
+import { Link } from "@reach/router"
 import DropDownMenu from "material-ui/DropDownMenu"
 import FontIcon from "material-ui/FontIcon"
-import IconButton from "material-ui/IconButton"
-import MenuItem from "material-ui/MenuItem"
-import Paper from "material-ui/Paper"
-import RaisedButton from "material-ui/RaisedButton"
-import React from "react"
-import { Link } from "react-router-dom"
+import React, { useState } from "react"
 import messages from "../../../../../lib/text"
 import style from "./style.css"
 
-class VariantInput extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: props.value,
-    }
-    this.onChange = this.onChange.bind(this)
-    this.onBlur = this.onBlur.bind(this)
+const VariantInput =props=> {
+      const [value,setValue] =useState( props.value)
+
+const  onBlur = () => {
+    props.onChange(props.variantId, value)
   }
 
-  onChange = e => {
-    this.setState({ value: e.target.value })
-  }
-
-  onBlur = e => {
-    this.props.onChange(this.props.variantId, this.state.value)
-  }
-
-  render() {
-    const { type, placeholder } = this.props
-    const { value } = this.state
+    const { type, placeholder } = props
 
     return (
       <input
@@ -37,8 +21,8 @@ class VariantInput extends React.Component {
         className={style.textInput}
         placeholder={placeholder}
         value={value}
-        onChange={this.onChange}
-        onBlur={this.onBlur}
+        onChange={(event)=>setValue(event.target.value)}
+        onBlur={onBlur}
         min="0"
       />
     )
@@ -63,7 +47,7 @@ const VariantRow = ({
       const menuItems = option.values
         .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0))
         .map((value, index) => (
-          <MenuItem key={index} value={value.id} primaryText={value.name} />
+          <MenuItem key={index} value={value.id}>{value.name}</MenuItem>
         ))
       return (
         <div key={option.id} className={style.gridCol}>
@@ -186,7 +170,7 @@ const ProductVariantsGrid = ({
     : null
 
   return (
-    <Paper className="paper-box" zDepth={1}>
+    <Paper className="paper-box" elevation={1}>
       <div className={style.grid}>
         <div className={style.gridHeadRow}>
           <div className={style.gridCol}>{messages.products_sku}</div>
@@ -199,13 +183,12 @@ const ProductVariantsGrid = ({
         {variantRows}
       </div>
       <div className={style.innerBox}>
-        <RaisedButton
-          label={messages.addVariant}
+        <Button
           onClick={createVariant}
           style={{ marginRight: 20 }}
           disabled={!hasOptions}
-        />
-        <RaisedButton label={messages.addOption} onClick={createOption} />
+        >{messages.addVariant}</Button>
+        <Button onClick={createOption} >{messages.addOption}</Button>
       </div>
     </Paper>
   )
