@@ -22,86 +22,84 @@ const validate = values => {
 const getShippingFieldLabel = ({ label, key }) =>
   label && label.length > 0 ? label : helper.getOrderFieldLabelByKey(key)
 
-class ShippingAddressForm extends React.Component {
-  render() {
-    const {
-      handleSubmit,
-      pristine,
-      submitting,
-      initialValues,
-      onCancel,
-      shippingMethod,
-    } = this.props
+const ShippingAddressForm = props => {
+  const {
+    handleSubmit,
+    pristine,
+    submitting,
+    initialValues,
+    onCancel,
+    shippingMethod,
+  } = props
 
-    let shippingFields = null
-    if (
-      shippingMethod &&
-      shippingMethod.fields &&
-      shippingMethod.fields.length > 0
-    ) {
-      shippingFields = shippingMethod.fields.map((field, index) => {
-        const fieldLabel = getShippingFieldLabel(field)
+  let shippingFields = null
+  if (
+    shippingMethod &&
+    shippingMethod.fields &&
+    shippingMethod.fields.length > 0
+  ) {
+    shippingFields = shippingMethod.fields.map((field, index) => {
+      const fieldLabel = getShippingFieldLabel(field)
 
-        return (
-          <Field
-            key={index}
-            component={TextField}
-            fullWidth
-            name={field.key}
-            floatingLabelText={fieldLabel}
-          />
-        )
-      })
-    }
-
-    return (
-      <form onSubmit={handleSubmit}>
-        <>
-          {shippingFields}
-          <Field
-            component={TextField}
-            fullWidth
-            name="city"
-            floatingLabelText={messages.city}
-          />
-          <div className="row">
-            <div className="col-xs-6">
-              <Field
-                component={TextField}
-                fullWidth
-                name="state"
-                floatingLabelText={messages.state}
-              />
-            </div>
-            <div className="col-xs-6">
-              <Field
-                component={TextField}
-                fullWidth
-                name="postal_code"
-                floatingLabelText={messages.postal_code}
-              />
-            </div>
-          </div>
-          <Field
-            component={TextField}
-            fullWidth
-            name="country"
-            floatingLabelText={messages.country}
-          />
-        </>
-        <div className={style.shippingButtons}>
-          <FlatButton label={messages.cancel} onClick={onCancel} />
-          <FlatButton
-            label={messages.save}
-            primary
-            type="submit"
-            style={{ marginLeft: 12 }}
-            disabled={pristine || submitting}
-          />
-        </div>
-      </form>
-    )
+      return (
+        <Field
+          key={index}
+          component={TextField}
+          fullWidth
+          name={field.key}
+          floatingLabelText={fieldLabel}
+        />
+      )
+    })
   }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <>
+        {shippingFields}
+        <Field
+          component={TextField}
+          fullWidth
+          name="city"
+          floatingLabelText={messages.city}
+        />
+        <div className="row">
+          <div className="col-xs-6">
+            <Field
+              component={TextField}
+              fullWidth
+              name="state"
+              floatingLabelText={messages.state}
+            />
+          </div>
+          <div className="col-xs-6">
+            <Field
+              component={TextField}
+              fullWidth
+              name="postal_code"
+              floatingLabelText={messages.postal_code}
+            />
+          </div>
+        </div>
+        <Field
+          component={TextField}
+          fullWidth
+          name="country"
+          floatingLabelText={messages.country}
+        />
+      </>
+      <div className={style.shippingButtons}>
+        <FlatButton label={messages.cancel} onClick={onCancel} />
+        <FlatButton
+          label={messages.save}
+          primary
+          type="submit"
+          style={{ marginLeft: 12 }}
+          disabled={pristine || submitting}
+        />
+      </div>
+    </form>
+  )
 }
 
 export default reduxForm({
