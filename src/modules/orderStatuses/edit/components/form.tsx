@@ -1,5 +1,5 @@
+import { Paper } from "@material-ui/core"
 import FlatButton from "material-ui/FlatButton"
-import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import React from "react"
 import { Field, reduxForm } from "redux-form"
@@ -30,7 +30,7 @@ const Form = props => {
   }
 
   return (
-    <Paper className="paper-box" zDepth={1}>
+    <Paper className="paper-box" elevation={1}>
       <form onSubmit={handleSubmit}>
         <div className={style.innerBox}>
           <Field
