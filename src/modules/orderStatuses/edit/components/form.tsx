@@ -20,60 +20,52 @@ const validate = values => {
   return errors
 }
 
-class Form extends React.Component {
-  render() {
-    const {
-      handleSubmit,
-      pristine,
-      submitting,
-      isSaving,
-      initialValues,
-    } = this.props
+const Form = props => {
+  const { handleSubmit, pristine, submitting, isSaving, initialValues } = props
 
-    let statusId = null
+  let statusId = null
 
-    if (initialValues) {
-      statusId = initialValues.id
-    }
-
-    return (
-      <Paper className="paper-box" zDepth={1}>
-        <form onSubmit={handleSubmit}>
-          <div className={style.innerBox}>
-            <Field
-              name="name"
-              component={TextField}
-              floatingLabelText={`${messages.orderStatusName} *`}
-              fullWidth
-            />
-            <br />
-            <Field
-              name="description"
-              component={TextField}
-              floatingLabelText={messages.description}
-              fullWidth
-              multiLine
-              rows={1}
-            />
-          </div>
-          <div className="buttons-box">
-            <FlatButton
-              label={messages.cancel}
-              className={style.button}
-              onClick={this.props.onCancel}
-            />
-            <RaisedButton
-              type="submit"
-              label={statusId ? messages.save : messages.add}
-              primary
-              className={style.button}
-              disabled={pristine || submitting || isSaving}
-            />
-          </div>
-        </form>
-      </Paper>
-    )
+  if (initialValues) {
+    statusId = initialValues.id
   }
+
+  return (
+    <Paper className="paper-box" zDepth={1}>
+      <form onSubmit={handleSubmit}>
+        <div className={style.innerBox}>
+          <Field
+            name="name"
+            component={TextField}
+            floatingLabelText={`${messages.orderStatusName} *`}
+            fullWidth
+          />
+          <br />
+          <Field
+            name="description"
+            component={TextField}
+            floatingLabelText={messages.description}
+            fullWidth
+            multiLine
+            rows={1}
+          />
+        </div>
+        <div className="buttons-box">
+          <FlatButton
+            label={messages.cancel}
+            className={style.button}
+            onClick={props.onCancel}
+          />
+          <RaisedButton
+            type="submit"
+            label={statusId ? messages.save : messages.add}
+            primary
+            className={style.button}
+            disabled={pristine || submitting || isSaving}
+          />
+        </div>
+      </form>
+    </Paper>
+  )
 }
 
 export default reduxForm({
