@@ -6,27 +6,26 @@ import React, { useState } from "react"
 import messages from "../../../../../lib/text"
 import style from "./style.css"
 
-const VariantInput =props=> {
-      const [value,setValue] =useState( props.value)
+const VariantInput = props => {
+  const [value, setValue] = useState(props.value)
 
-const  onBlur = () => {
+  const onBlur = () => {
     props.onChange(props.variantId, value)
   }
 
-    const { type, placeholder } = props
+  const { type, placeholder } = props
 
-    return (
-      <input
-        type={type}
-        className={style.textInput}
-        placeholder={placeholder}
-        value={value}
-        onChange={(event)=>setValue(event.target.value)}
-        onBlur={onBlur}
-        min="0"
-      />
-    )
-  }
+  return (
+    <input
+      type={type}
+      className={style.textInput}
+      placeholder={placeholder}
+      value={value}
+      onChange={event => setValue(event.target.value)}
+      onBlur={onBlur}
+      min="0"
+    />
+  )
 }
 
 const VariantRow = ({
@@ -47,7 +46,9 @@ const VariantRow = ({
       const menuItems = option.values
         .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0))
         .map((value, index) => (
-          <MenuItem key={index} value={value.id}>{value.name}</MenuItem>
+          <MenuItem key={index} value={value.id}>
+            {value.name}
+          </MenuItem>
         ))
       return (
         <div key={option.id} className={style.gridCol}>
@@ -187,8 +188,10 @@ const ProductVariantsGrid = ({
           onClick={createVariant}
           style={{ marginRight: 20 }}
           disabled={!hasOptions}
-        >{messages.addVariant}</Button>
-        <Button onClick={createOption} >{messages.addOption}</Button>
+        >
+          {messages.addVariant}
+        </Button>
+        <Button onClick={createOption}>{messages.addOption}</Button>
       </div>
     </Paper>
   )
