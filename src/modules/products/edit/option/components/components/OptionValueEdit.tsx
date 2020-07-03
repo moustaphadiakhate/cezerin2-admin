@@ -1,60 +1,42 @@
-import FontIcon from "material-ui/FontIcon"
-import IconButton from "material-ui/IconButton"
-import React from "react"
+import { IconButton } from "@material-ui/core"
+import { Delete } from "@material-ui/icons"
+import React, { useState } from "react"
 import messages from "../../../../../../lib/text"
 import style from "../style.css"
 
-class OptionValueEdit extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: props.value.name,
-    }
-    this.onChange = this.onChange.bind(this)
-    this.onBlur = this.onBlur.bind(this)
-    this.onDelete = this.onDelete.bind(this)
+const OptionValueEdit = props => {
+  const [value, setValue] = useState(props.value.name)
+
+  const onBlur = e => {
+    props.onChange(props.value.id, value)
   }
 
-  onChange = e => {
-    this.setState({ value: e.target.value })
+  const onDelete = () => {
+    props.onDelete(props.value.id)
   }
 
-  onBlur = e => {
-    this.props.onChange(this.props.value.id, this.state.value)
-  }
-
-  onDelete = () => {
-    this.props.onDelete(this.props.value.id)
-  }
-
-  render() {
-    const { value } = this.state
-
-    return (
-      <div className={style.gridRow}>
-        <div className={style.gridColInput}>
-          <input
-            type="text"
-            className={style.textInput}
-            value={value}
-            onChange={this.onChange}
-            onBlur={this.onBlur}
-          />
-        </div>
-        <div className={style.gridColButton}>
-          <IconButton
-            title={messages.actions_delete}
-            onClick={this.onDelete}
-            tabIndex={-1}
-          >
-            <FontIcon color="#a1a1a1" className="material-icons">
-              delete
-            </FontIcon>
-          </IconButton>
-        </div>
+  return (
+    <div className={style.gridRow}>
+      <div className={style.gridColInput}>
+        <input
+          type="text"
+          className={style.textInput}
+          value={value}
+          onChange={event => setValue(event.target.value)}
+          onBlur={onBlur}
+        />
       </div>
-    )
-  }
+      <div className={style.gridColButton}>
+        <IconButton
+          title={messages.actions_delete}
+          onClick={onDelete}
+          tabIndex={-1}
+        >
+          <Delete color="secondary" className="material-icons" />
+        </IconButton>
+      </div>
+    </div>
+  )
 }
 
 export default OptionValueEdit
