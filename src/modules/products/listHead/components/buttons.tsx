@@ -1,7 +1,7 @@
 import Dialog from "@material-ui/core/Dialog"
 import DialogActions from "@material-ui/core/DialogActions"
+import { Add, Delete, Folder } from "@material-ui/icons"
 import FlatButton from "material-ui/FlatButton"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import React, { useState } from "react"
 import messages from "../../../../lib/text"
@@ -41,9 +41,7 @@ const Buttons = props => {
             tooltip={messages.actions_delete}
             onClick={() => setOpenDelete(true)}
           >
-            <FontIcon color="#fff" className="material-icons">
-              delete
-            </FontIcon>
+            <Delete color="primary" className="material-icons" />
           </IconButton>
           <IconButton
             touch
@@ -51,9 +49,7 @@ const Buttons = props => {
             tooltip={messages.actions_moveTo}
             onClick={() => setOpenMoveTo(true)}
           >
-            <FontIcon color="#fff" className="material-icons">
-              folder
-            </FontIcon>
+            <Folder color="primary" className="material-icons" />
           </IconButton>
           <DeleteConfirmation
             open={openDelete}
@@ -96,9 +92,7 @@ const Buttons = props => {
         tooltip={messages.addProduct}
         onClick={onCreate}
       >
-        <FontIcon color="#fff" className="material-icons">
-          add
-        </FontIcon>
+        <Add color="primary" className="material-icons" />
       </IconButton>
     </>
   )
