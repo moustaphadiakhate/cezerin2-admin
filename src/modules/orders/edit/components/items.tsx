@@ -1,15 +1,11 @@
-import FontIcon from "material-ui/FontIcon"
-import IconButton from "material-ui/IconButton"
-import MenuItem from "material-ui/MenuItem"
-import SelectField from "material-ui/SelectField"
+import { IconButton, MenuItem, Select } from "@material-ui/core"
+import { MoreVert } from "@material-ui/icons"
 import React from "react"
 import OrderItem from "./components/OrderItem"
 
 const iconButtonElement = (
   <IconButton touch>
-    <FontIcon color="rgb(189, 189, 189)" className="material-icons">
-      more_vert
-    </FontIcon>
+    <MoreVert color="secondary" className="material-icons" />
   </IconButton>
 )
 
@@ -18,12 +14,14 @@ const ProductOption = ({ option, onChange, selectedOptions }) => {
   const values = option.values
     .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0))
     .map((value, index) => (
-      <MenuItem key={index} value={value.id} primaryText={value.name} />
+      <MenuItem key={index} value={value.id}>
+        {value.name}
+      </MenuItem>
     ))
 
   return (
-    <SelectField
-      floatingLabelText={option.name}
+    <Select
+      label={option.name}
       fullWidth
       value={selectedValue}
       onChange={(event, index, value) => {
@@ -31,7 +29,7 @@ const ProductOption = ({ option, onChange, selectedOptions }) => {
       }}
     >
       {values}
-    </SelectField>
+    </Select>
   )
 }
 
