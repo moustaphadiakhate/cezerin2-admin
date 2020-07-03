@@ -1,62 +1,46 @@
-import FontIcon from "material-ui/FontIcon"
-import IconButton from "material-ui/IconButton"
-import React from "react"
+import { IconButton } from "@material-ui/core"
+import { Delete } from "@material-ui/icons"
+import React, { useState } from "react"
 import messages from "../../../../../lib/text"
 import DeleteConfirmation from "../../../../../modules/shared/deleteConfirmation"
 
-class Buttons extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      openDelete: false,
-    }
+const Buttons = props => {
+  const [openDelete, setOpenDelete] = useState(false)
+
+  const deletePage = () => {
+    setOpenDelete(false)
+    props.onDelete(props.redirect.id)
   }
 
-  openDelete = () => {
-    this.setState({ openDelete: true })
-  }
+  const { redirect } = props
+  const redirectName =
+    redirect && redirect.from && redirect.from.length > 0
+      ? redirect.from
+      : "Draft"
 
-  closeDelete = () => {
-    this.setState({ openDelete: false })
+  if (redirect) {
+    return (
+      <>
+        <IconButton
+          touch
+          tooltipPosition="bottom-left"
+          tooltip={messages.actions_delete}
+          onClick={() => setOpenDelete(true)}
+        >
+          <Delete color="primary" className="material-icons" />
+        </IconButton>
+        <DeleteConfirmation
+          open={openDelete}
+          isSingle
+          itemsCount={1}
+          itemName={redirectName}
+          onCancel={() => setOpenDelete(false)}
+          onDelete={deletePage}
+        />
+      </>
+    )
   }
-
-  deletePage = () => {
-    this.setState({ openDelete: false })
-    this.props.onDelete(this.props.redirect.id)
-  }
-
-  render() {
-    const { redirect } = this.props
-    const redirectName =
-      redirect && redirect.from && redirect.from.length > 0
-        ? redirect.from
-        : "Draft"
-
-    if (redirect) {
-      return (
-        <>
-          <IconButton
-            touch
-            tooltipPosition="bottom-left"
-            tooltip={messages.actions_delete}
-            onClick={this.openDelete}
-          >
-            <FontIcon color="#fff" className="material-icons">
-              delete
-            </FontIcon>
-          </IconButton>
-          <DeleteConfirmation
-            open={this.state.openDelete}
-            isSingle
-            itemsCount={1}
-            itemName={redirectName}
-            onCancel={this.closeDelete}
-            onDelete={this.deletePage}
-          />
-        </>
-      )
-    }
-    return null
-  }
+  return null
 }
+
 export default Buttons
