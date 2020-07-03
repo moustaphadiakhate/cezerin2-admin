@@ -1,5 +1,4 @@
-import Paper from "material-ui/Paper"
-import RaisedButton from "material-ui/RaisedButton"
+import { Button, Paper } from "@material-ui/core"
 import React, { useState } from "react"
 import api from "../../../../lib/api"
 import messages from "../../../../lib/text"
@@ -33,12 +32,9 @@ const ActionComponent = props => {
           {action.description}
         </div>
         <div className="col-xs-5" style={{ textAlign: "right" }}>
-          <RaisedButton
-            label={action.name}
-            primary
-            disabled={loading}
-            onClick={handleActionCall}
-          />
+          <Button color="primary" disabled={loading} onClick={handleActionCall}>
+            {action.name}
+          </Button>
         </div>
       </div>
     </div>
@@ -60,7 +56,7 @@ const ServiceActions = ({ actions, serviceId, fetchServiceLogs }) => {
       <div className="gray-title" style={{ margin: "15px 0 15px 20px" }}>
         {messages.serviceActions}
       </div>
-      <Paper className="paper-box" zDepth={1}>
+      <Paper className="paper-box" elevation={1}>
         <>{buttons}</>
       </Paper>
     </div>
