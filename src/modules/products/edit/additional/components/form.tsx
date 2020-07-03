@@ -1,12 +1,9 @@
-import { Button } from "@material-ui/core"
-import FontIcon from "material-ui/FontIcon"
-import IconButton from "material-ui/IconButton"
+import { Button, IconButton, MenuItem, Paper } from "@material-ui/core"
+import { MoreVert } from "@material-ui/icons"
+import { Link } from "@reach/router"
 import IconMenu from "material-ui/IconMenu"
-import MenuItem from "material-ui/MenuItem"
-import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
-import React from "react"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from "react"
 import TagsInput from "react-tagsinput"
 import { Field, FieldArray, reduxForm } from "redux-form"
 import { TextField } from "redux-form-material-ui"
@@ -66,27 +63,22 @@ const RelatedProductActions = ({ fields, index }) => (
     anchorOrigin={{ horizontal: "right", vertical: "top" }}
     iconButtonElement={
       <IconButton touch>
-        <FontIcon color="#777" className="material-icons">
-          more_vert
-        </FontIcon>
+        <MoreVert color="primary" className="material-icons" />
       </IconButton>
     }
   >
-    <MenuItem
-      primaryText={messages.actions_delete}
-      onClick={() => fields.remove(index)}
-    />
+    <MenuItem onClick={() => fields.remove(index)}>
+      {messages.actions_delete}
+    </MenuItem>
     {index > 0 && (
-      <MenuItem
-        primaryText={messages.actions_moveUp}
-        onClick={() => fields.move(index, index - 1)}
-      />
+      <MenuItem onClick={() => fields.move(index, index - 1)}>
+        {messages.actions_moveUp}
+      </MenuItem>
     )}
     {index + 1 < fields.length && (
-      <MenuItem
-        primaryText={messages.actions_moveDown}
-        onClick={() => fields.move(index, index + 1)}
-      />
+      <MenuItem onClick={() => fields.move(index, index + 1)}>
+        {messages.actions_moveDown}
+      </MenuItem>
     )}
   </IconMenu>
 )
@@ -121,43 +113,25 @@ const RelatedProduct = ({ settings, product, actions }) => {
   )
 }
 
-class ProductsArray extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showAddItem: false,
-      products: [],
-    }
+const ProductsArray = props => {
+  const [showAddItem, setShowAddItem] = useState(false)
+  const [products, setProducts] = useState([])
+
+  const addItem = productId => {
+    setShowAddItem(false)
+    props.fields.push(productId)
   }
 
-  showAddItem = () => {
-    this.setState({ showAddItem: true })
-  }
+  useEffect(() => {
+    const ids = props.fields.getAll()
+    fetchProducts(ids)
+  }, [])
 
-  hideAddItem = () => {
-    this.setState({ showAddItem: false })
-  }
+  useEffect(() => {
+    fetchProducts(props.fields.getAll())
+  }, [])
 
-  addItem = productId => {
-    this.hideAddItem()
-    this.props.fields.push(productId)
-  }
-
-  componentDidMount() {
-    const ids = this.props.fields.getAll()
-    this.fetchProducts(ids)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const currentIds = this.props.fields.getAll()
-    const newIds = nextProps.fields.getAll()
-
-    if (currentIds !== newIds) {
-      this.fetchProducts(newIds)
-    }
-  }
-
-  fetchProducts = ids => {
+  const fetchProducts = ids => {
     if (ids && Array.isArray(ids) && ids.length > 0) {
       api.products
         .list({
@@ -167,58 +141,53 @@ class ProductsArray extends React.Component {
           ids,
         })
         .then(productsResponse => {
-          this.setState({ products: productsResponse.json.data })
+          setProducts(productsResponse.json.data)
         })
     } else {
-      this.setState({
-        products: [],
-      })
+      setProducts([])
     }
   }
 
-  render() {
-    const { settings, fields } = this.props
-    const { products } = this.state
+  const { settings, fields } = props
 
-    return (
+  return (
+    <>
+      <Paper className={style.relatedProducts} elevation={1}>
+        {fields.map((field, index) => {
+          const actions = (
+            <RelatedProductActions fields={fields} index={index} />
+          )
+          const productId = fields.get(index)
+          const product = products.find(item => item.id === productId)
+          return (
+            <RelatedProduct
+              key={index}
+              settings={settings}
+              product={product}
+              actions={actions}
+            />
+          )
+        })}
+
+        <ProductSearchDialog
+          open={() => setShowAddItem(true)}
+          title={messages.addOrderItem}
+          settings={settings}
+          onSubmit={addItem}
+          onCancel={() => setShowAddItem(false)}
+          submitLabel={messages.add}
+          cancelLabel={messages.cancel}
+        />
+      </Paper>
+
       <>
-        <Paper className={style.relatedProducts} zDepth={1}>
-          {fields.map((field, index) => {
-            const actions = (
-              <RelatedProductActions fields={fields} index={index} />
-            )
-            const productId = fields.get(index)
-            const product = products.find(item => item.id === productId)
-            return (
-              <RelatedProduct
-                key={index}
-                settings={settings}
-                product={product}
-                actions={actions}
-              />
-            )
-          })}
-
-          <ProductSearchDialog
-            open={this.state.showAddItem}
-            title={messages.addOrderItem}
-            settings={settings}
-            onSubmit={this.addItem}
-            onCancel={this.hideAddItem}
-            submitLabel={messages.add}
-            cancelLabel={messages.cancel}
-          />
-        </Paper>
-
-        <>
-          <RaisedButton
-            label={messages.addOrderItem}
-            onClick={this.showAddItem}
-          />
-        </>
+        <RaisedButton
+          label={messages.addOrderItem}
+          onClick={() => setShowAddItem(true)}
+        />
       </>
-    )
-  }
+    </>
+  )
 }
 
 const ProductAdditionalForm = ({
@@ -226,12 +195,11 @@ const ProductAdditionalForm = ({
   pristine,
   reset,
   submitting,
-  initialValues,
   settings,
   categories,
 }) => (
   <form onSubmit={handleSubmit}>
-    <Paper className="paper-box" zDepth={1}>
+    <Paper className="paper-box" elevation={1}>
       <div className={style.innerBox}>
         <div
           className="row middle-xs"
