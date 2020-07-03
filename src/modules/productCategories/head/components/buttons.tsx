@@ -1,153 +1,119 @@
-import Dialog from "@material-ui/core/Dialog"
-import DialogActions from "@material-ui/core/DialogActions"
-import FlatButton from "material-ui/FlatButton"
-import FontIcon from "material-ui/FontIcon"
-import IconButton from "material-ui/IconButton"
-import React from "react"
+import { Button, Dialog, DialogActions, IconButton } from "@material-ui/core"
+import {
+  Add,
+  ArrowDownward,
+  ArrowUpward,
+  Delete,
+  Folder,
+} from "@material-ui/icons"
+import React, { useState } from "react"
 import messages from "../../../../lib/text"
 import CategorySelect from "../../../../modules/productCategories/select"
 import DeleteConfirmation from "../../../../modules/shared/deleteConfirmation"
 
-class Buttons extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      categoryIdMoveTo: "root",
-      openMoveTo: false,
-      openDelete: false,
-    }
+const Buttons = props => {
+  const [categoryIdMoveTo, setCategoryIdMoveTo] = useState("root")
+  const [openMoveTo, setOpenMoveTo] = useState(false)
+  const [openDelete, setOpenDelete] = useState(false)
+
+  const { selected, onMoveUp, onMoveDown, onDelete, onCreate } = props
+
+  const deleteCategory = () => {
+    setOpenDelete(false)
+    onDelete(props.selected.id)
   }
 
-  showMoveTo = () => {
-    this.setState({ openMoveTo: true })
+  const saveMoveTo = () => {
+    setOpenMoveTo(false)
+    props.onMoveTo(categoryIdMoveTo)
   }
 
-  showDelete = () => {
-    this.setState({ openDelete: true })
-  }
+  const categoryName =
+    selected && selected.name && selected.name.length > 0
+      ? selected.name
+      : "Draft"
 
-  closeMoveTo = () => {
-    this.setState({ openMoveTo: false })
-  }
-
-  closeDelete = () => {
-    this.setState({ openDelete: false })
-  }
-
-  deleteCategory = () => {
-    this.setState({ openDelete: false })
-    this.props.onDelete(this.props.selected.id)
-  }
-
-  saveMoveTo = () => {
-    this.setState({ openMoveTo: false })
-    this.props.onMoveTo(this.state.categoryIdMoveTo)
-  }
-
-  selectMoveTo = categoryId => {
-    this.setState({ categoryIdMoveTo: categoryId })
-  }
-
-  render() {
-    const { selected, onMoveUp, onMoveDown, onDelete, onCreate } = this.props
-    const categoryName =
-      selected && selected.name && selected.name.length > 0
-        ? selected.name
-        : "Draft"
-
-    return (
-      <span>
-        {selected && (
-          <>
-            <IconButton
-              touch
-              tooltipPosition="bottom-left"
-              tooltip={messages.actions_moveUp}
-              onClick={onMoveUp}
-            >
-              <FontIcon color="#fff" className="material-icons">
-                arrow_upward
-              </FontIcon>
-            </IconButton>
-            <IconButton
-              touch
-              tooltipPosition="bottom-left"
-              tooltip={messages.actions_moveDown}
-              onClick={onMoveDown}
-            >
-              <FontIcon color="#fff" className="material-icons">
-                arrow_downward
-              </FontIcon>
-            </IconButton>
-            <IconButton
-              touch
-              tooltipPosition="bottom-left"
-              tooltip={messages.actions_delete}
-              onClick={this.showDelete}
-            >
-              <FontIcon color="#fff" className="material-icons">
-                delete
-              </FontIcon>
-            </IconButton>
-            <IconButton
-              touch
-              tooltipPosition="bottom-left"
-              tooltip={messages.actions_moveTo}
-              onClick={this.showMoveTo}
-            >
-              <FontIcon color="#fff" className="material-icons">
-                folder
-              </FontIcon>
-            </IconButton>
-            <Dialog
-              title={messages.actions_moveTo}
-              modal={false}
-              open={this.state.openMoveTo}
-              onRequestClose={this.closeMoveTo}
-              autoScrollBodyContent
-            >
-              <CategorySelect
-                onSelect={this.selectMoveTo}
-                selectedId={this.state.categoryIdMoveTo}
-                showRoot
-                showAll={false}
-              />
-              <DialogActions>
-                <FlatButton
-                  label={messages.cancel}
-                  onClick={this.closeMoveTo}
-                  style={{ marginRight: 10 }}
-                />
-                <FlatButton
-                  label={messages.actions_moveHere}
-                  primary
-                  keyboardFocused
-                  onClick={this.saveMoveTo}
-                />
-              </DialogActions>
-            </Dialog>
-            <DeleteConfirmation
-              open={this.state.openDelete}
-              isSingle
-              itemsCount={1}
-              itemName={categoryName}
-              onCancel={this.closeDelete}
-              onDelete={this.deleteCategory}
+  return (
+    <span>
+      {selected && (
+        <>
+          <IconButton
+            touch
+            tooltipPosition="bottom-left"
+            tooltip={messages.actions_moveUp}
+            onClick={onMoveUp}
+          >
+            <ArrowUpward color="primary" className="material-icons" />
+          </IconButton>
+          <IconButton
+            touch
+            tooltipPosition="bottom-left"
+            tooltip={messages.actions_moveDown}
+            onClick={onMoveDown}
+          >
+            <ArrowDownward color="primary" className="material-icons" />
+          </IconButton>
+          <IconButton
+            touch
+            tooltipPosition="bottom-left"
+            tooltip={messages.actions_delete}
+            onClick={() => setOpenDelete(true)}
+          >
+            <Delete color="primary" className="material-icons" />
+          </IconButton>
+          <IconButton
+            touch
+            tooltipPosition="bottom-left"
+            tooltip={messages.actions_moveTo}
+            onClick={() => setOpenMoveTo(true)}
+          >
+            <Folder color="primary" className="material-icons" />
+          </IconButton>
+          <Dialog
+            title={messages.actions_moveTo}
+            modal={false}
+            open={openMoveTo}
+            onRequestClose={() => setOpenMoveTo(false)}
+            autoScrollBodyContent
+          >
+            <CategorySelect
+              onSelect={groupID => setCategoryIdMoveTo(groupID)}
+              selectedId={categoryIdMoveTo}
+              showRoot
+              showAll={false}
             />
-          </>
-        )}
-        <IconButton
-          touch
-          tooltipPosition="bottom-left"
-          tooltip={messages.productCategories_titleAdd}
-          onClick={onCreate}
-        >
-          <FontIcon color="#fff" className="material-icons">
-            add
-          </FontIcon>
-        </IconButton>
-      </span>
-    )
-  }
+            <DialogActions>
+              <Button
+                onClick={() => setOpenMoveTo(false)}
+                style={{ marginRight: 10 }}
+              >
+                {messages.cancel}
+              </Button>
+              <Button color="primary" keyboardFocused onClick={saveMoveTo}>
+                {messages.actions_moveHere}
+              </Button>
+            </DialogActions>
+          </Dialog>
+          <DeleteConfirmation
+            open={openDelete}
+            isSingle
+            itemsCount={1}
+            itemName={categoryName}
+            onCancel={() => setOpenDelete(false)}
+            onDelete={deleteCategory}
+          />
+        </>
+      )}
+      <IconButton
+        touch
+        tooltipPosition="bottom-left"
+        tooltip={messages.productCategories_titleAdd}
+        onClick={onCreate}
+      >
+        <Add color="primary" className="material-icons" />
+      </IconButton>
+    </span>
+  )
 }
+
 export default Buttons
