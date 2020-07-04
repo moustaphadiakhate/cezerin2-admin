@@ -7,11 +7,7 @@ import messages from "../../../../lib/text"
 import DynamicEditControl from "./dynamicEditControl"
 import style from "./style.module.sass"
 
-const ArrayEditor = ({
-  label,
-  properties,
-  fields,,
-}) => (
+const ArrayEditor = ({ label, properties, fields }) => (
   <>
     <div className={style.arrayTitle}>
       {label}
