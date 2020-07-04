@@ -2,7 +2,7 @@ import { IconButton } from "@material-ui/core"
 import { Delete } from "@material-ui/icons"
 import React, { useState } from "react"
 import messages from "../../../../../../lib/text"
-import style from "../style.css"
+import style from "../style.module.sass"
 
 const OptionValueEdit = props => {
   const [value, setValue] = useState(props.value.name)

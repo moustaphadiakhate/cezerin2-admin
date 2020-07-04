@@ -2,7 +2,7 @@ import { Button, Dialog, Paper } from "@material-ui/core"
 import moment from "moment"
 import React, { useState } from "react"
 import messages from "../../../../lib/text"
-import style from "./style.css"
+import style from "./style.sass"
 import SummaryForm from "./summaryForm"
 
 const getOrderStates = order => {

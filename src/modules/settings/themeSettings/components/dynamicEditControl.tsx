@@ -9,7 +9,7 @@ import {
 } from "../../../../modules/shared/form"
 import ArrayEditor from "./arrayEditor"
 import ImageEditor from "./imageEditor"
-import style from "./style.css"
+import style from "./style.sass"
 
 const DynamicEditControl = ({
   type,

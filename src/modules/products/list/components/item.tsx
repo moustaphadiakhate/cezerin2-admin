@@ -4,7 +4,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import * as helper from "../../../../lib/helper"
 import messages from "../../../../lib/text"
-import style from "./style.css"
+import style from "./style.sass"
 
 const THUMBNAIL_WIDTH = 100
 const ImagePlaceholder = (

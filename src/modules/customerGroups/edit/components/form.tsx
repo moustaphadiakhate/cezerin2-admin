@@ -2,7 +2,7 @@ import { Button, Paper, TextField } from "@material-ui/core"
 import React from "react"
 import { Field, reduxForm } from "redux-form"
 import messages from "../../../../lib/text"
-import style from "./style.css"
+import style from "./style.sass"
 
 const validate = values => {
   const errors = {}

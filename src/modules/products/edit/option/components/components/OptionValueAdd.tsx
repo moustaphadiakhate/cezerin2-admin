@@ -2,7 +2,7 @@ import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import React, { useState } from "react"
 import messages from "../../../../../../lib/text"
-import style from "./../style.css"
+import style from "../style.module.sass"
 
 const OptionValueAdd = props => {
   const [value, setValues] = useState("")

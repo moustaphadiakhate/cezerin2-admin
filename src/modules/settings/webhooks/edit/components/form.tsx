@@ -3,7 +3,7 @@ import React, { useEffect } from "react"
 import { Field, reduxForm } from "redux-form"
 import messages from "../../../../../lib/text"
 import { CustomToggle, MultiSelect } from "../../../../../modules/shared/form"
-import style from "./style.css"
+import style from "./style.sass"
 
 const WEBHOOK_EVENTS = [
   "order.created",

@@ -15,7 +15,7 @@ import { Field, reduxForm } from "redux-form"
 import data from "../../../../lib/data"
 import messages from "../../../../lib/text"
 import { CustomToggle } from "../../../../modules/shared/form"
-import style from "./style.css"
+import style from "./style.sass"
 
 const GeneralSettings = (
   props: Readonly<{ handleSubmit; pristine; submitting; initialValues; onLoad }>

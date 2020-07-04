@@ -5,7 +5,7 @@ import Snackbar from "material-ui/Snackbar"
 import React, { useEffect, useState } from "react"
 import Dropzone from "react-dropzone"
 import messages from "../../../lib/text"
-import style from "./style.css"
+import style from "./style.sass"
 
 const ImageUpload = (
   props: Readonly<{ uploading; onDelete; imageUrl; onUpload; children }>

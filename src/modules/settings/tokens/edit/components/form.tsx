@@ -6,7 +6,7 @@ import { TextField } from "redux-form-material-ui"
 import messages from "../../../../../lib/text"
 import ConfirmationDialog from "../../../../../modules/shared/confirmation"
 import { MultiSelect } from "../../../../../modules/shared/form"
-import style from "./style.css"
+import style from "./style.sass"
 
 const Scopes = [
   "admin",

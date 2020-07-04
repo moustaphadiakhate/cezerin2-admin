@@ -1,12 +1,10 @@
-import { Divider } from "@material-ui/core"
+import { Button, Divider, List } from "@material-ui/core"
 import { Refresh } from "@material-ui/icons"
-import { List } from "material-ui/List"
-import RaisedButton from "material-ui/RaisedButton"
 import React, { useEffect } from "react"
 import messages from "../../../../lib/text"
 import Head from "./head"
 import ProductsListItem from "./item"
-import style from "./style.css"
+import style from "./style.sass"
 
 const ProductsList = (
   props: Readonly<{
@@ -57,14 +55,15 @@ const ProductsList = (
         <Divider />
         {rows}
         <div className={style.more}>
-          <RaisedButton
+          <Button
             disabled={loadingItems || !hasMore}
-            label={messages.actions_loadMore}
             labelPosition="before"
             primary={false}
             icon={<Refresh className="material-icons" />}
             onClick={loadMore}
-          />
+          >
+            {messages.actions_loadMore}
+          </Button>
         </div>
       </List>
     </div>

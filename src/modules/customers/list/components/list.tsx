@@ -6,7 +6,7 @@ import React, { useEffect } from "react"
 import messages from "../../../../lib/text"
 import Head from "./head"
 import CustomersListItem from "./item"
-import style from "./style.css"
+import style from "./style.sass"
 
 const CustomersList = props => {
   const {

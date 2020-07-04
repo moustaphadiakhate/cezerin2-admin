@@ -4,7 +4,7 @@ import DropDownMenu from "material-ui/DropDownMenu"
 import FontIcon from "material-ui/FontIcon"
 import React, { useState } from "react"
 import messages from "../../../../../lib/text"
-import style from "./style.css"
+import style from "./style.sass"
 
 const VariantInput = props => {
   const [value, setValue] = useState(props.value)

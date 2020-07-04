@@ -3,7 +3,7 @@ import { Delete } from "@material-ui/icons"
 import React from "react"
 import { Field, FieldArray, reduxForm } from "redux-form"
 import messages from "../../../../../lib/text"
-import style from "./style.css"
+import style from "./style.sass"
 
 const AttributesGrid = ({ fields, meta: { touched, error, submitFailed } }) => (
   <>

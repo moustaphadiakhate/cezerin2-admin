@@ -6,7 +6,7 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import * as helper from "../../../../../lib/helper"
 import messages from "../../../../../lib/text"
-import style from "../style.css"
+import style from "../style.module.sass"
 
 const OrderItem = props => {
   const [quantity, setQuantity] = useState(props.item.quantity)

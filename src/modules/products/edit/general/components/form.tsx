@@ -7,7 +7,7 @@ import { TextField } from "redux-form-material-ui"
 import api from "../../../../../lib/api"
 import messages from "../../../../../lib/text"
 import Editor from "../../../../../modules/shared/editor"
-import style from "./style.css"
+import style from "./style.sass"
 
 const validate = values => {
   const errors = {}

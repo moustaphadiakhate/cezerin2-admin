@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react"
 import api from "../../../../lib/api"
 import * as helper from "../../../../lib/helper"
 import messages from "../../../../lib/text"
-import style from "./style.css"
+import style from "./style.sass"
 
 const getOrderStates = order => {
   const states = []

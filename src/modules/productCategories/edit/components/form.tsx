@@ -9,7 +9,7 @@ import messages from "../../../../lib/text"
 import Editor from "../../../../modules/shared/editor"
 import { CustomToggle } from "../../../../modules/shared/form"
 import ImageUpload from "../../../../modules/shared/imageUpload"
-import style from "./style.css"
+import style from "./style.sass"
 
 const validate = values => {
   const errors = {}

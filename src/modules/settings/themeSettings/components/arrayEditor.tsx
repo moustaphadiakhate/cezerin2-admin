@@ -5,7 +5,7 @@ import Paper from "material-ui/Paper"
 import React from "react"
 import messages from "../../../../lib/text"
 import DynamicEditControl from "./dynamicEditControl"
-import style from "./style.css"
+import style from "./style.sass"
 
 const ArrayEditor = ({
   label,

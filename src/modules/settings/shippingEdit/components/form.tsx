@@ -4,7 +4,7 @@ import { Field, FieldArray, reduxForm } from "redux-form"
 import messages from "../../../../lib/text"
 import { CustomToggle } from "../../../../modules/shared/form"
 import FieldsEditor from "./fieldsEditor"
-import style from "./style.css"
+import style from "./style.sass"
 
 const validate = values => {
   const errors = {}

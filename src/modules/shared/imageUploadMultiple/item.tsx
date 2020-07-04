@@ -2,7 +2,7 @@ import { IconButton, Paper } from "@material-ui/core"
 import { Create, Delete } from "@material-ui/icons"
 import React from "react"
 import messages from "../../../lib/text"
-import style from "./style.css"
+import style from "./style.sass"
 
 const GalleryItem = ({ url, alt, id, onDelete, onImageEdit }) => (
   <Paper elevation={1} rounded={false}>

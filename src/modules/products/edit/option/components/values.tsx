@@ -3,7 +3,7 @@ import React from "react"
 import messages from "../../../../../lib/text"
 import OptionValueAdd from "./components/OptionValueAdd"
 import OptionValueEdit from "./components/OptionValueEdit"
-import style from "./style.css"
+import style from "./style.sass"
 
 const OptionValues = ({
   optionValues,

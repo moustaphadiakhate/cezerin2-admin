@@ -2,7 +2,7 @@ import { Button, Dialog, Paper } from "@material-ui/core"
 import React, { useState } from "react"
 import * as helper from "../../../../lib/helper"
 import messages from "../../../../lib/text"
-import style from "./style.css"
+import style from "./style.sass"
 import SummaryForm from "./summaryForm"
 
 const CustomerSummary = props => {
