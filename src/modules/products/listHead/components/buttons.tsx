@@ -1,8 +1,5 @@
-import Dialog from "@material-ui/core/Dialog"
-import DialogActions from "@material-ui/core/DialogActions"
+import { Button, Dialog, DialogActions, IconButton } from "@material-ui/core"
 import { Add, Delete, Folder } from "@material-ui/icons"
-import FlatButton from "material-ui/FlatButton"
-import IconButton from "material-ui/IconButton"
 import React, { useState } from "react"
 import messages from "../../../../lib/text"
 import CategorySelect from "../../../../modules/productCategories/select"
@@ -71,17 +68,12 @@ const Buttons = props => {
               opened
             />
             <DialogActions>
-              <FlatButton
-                label={messages.cancel}
-                onClick={closeMoveTo}
-                style={{ marginRight: 10 }}
-              />
-              <FlatButton
-                label={messages.actions_moveHere}
-                primary
-                keyboardFocused
-                onClick={saveMoveTo}
-              />
+              <Button onClick={closeMoveTo} style={{ marginRight: 10 }}>
+                {messages.cancel}
+              </Button>
+              <Button color="primary" keyboardFocused onClick={saveMoveTo}>
+                {messages.actions_moveHere}
+              </Button>
             </DialogActions>
           </Dialog>
         </>
