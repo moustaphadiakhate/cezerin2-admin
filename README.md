@@ -84,6 +84,8 @@ Client-side dashboard use JSON Web Token (JWT) to access REST API. [Demo dashboa
 
 In the project directory, you can run:
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
@@ -129,6 +131,14 @@ We also welcome financial contributions in full transparency on our [open collec
 Anyone can file an expense. If the expense makes sense for the development of the community, it will be "merged" in the ledger of our open collective by the core contributors and the person who filed the expense will be reimbursed.
 
 ## Credits
+
+(only for pull requests, and all contributers are equal to us...!)
+Mainly for Restmount as the original author. (Currently abandon or out of communication)
+Himadu Sirimanna, a major contributer and updater to 2021 version(0.36.0)
+Vamcart the maintainer of cezerin2
+Lorian a contributer
+Ngoyal for seperating the mono
+And all the rest below...
 
 ### Contributors
 
