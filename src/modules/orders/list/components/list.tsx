@@ -1,4 +1,4 @@
-import Divider from "material-ui/Divider"
+import { Divider } from "@material-ui/core"
 import FontIcon from "material-ui/FontIcon"
 import { List } from "material-ui/List"
 import RaisedButton from "material-ui/RaisedButton"
@@ -6,7 +6,7 @@ import React, { useEffect } from "react"
 import messages from "../../../../lib/text"
 import Head from "./head"
 import OrdersListItem from "./item"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const OrdersList = props => {
   useEffect(() => {

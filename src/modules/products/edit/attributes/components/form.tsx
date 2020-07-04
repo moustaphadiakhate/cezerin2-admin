@@ -3,9 +3,9 @@ import { Delete } from "@material-ui/icons"
 import React from "react"
 import { Field, FieldArray, reduxForm } from "redux-form"
 import messages from "../../../../../lib/text"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
-const AttributesGrid = ({ fields, meta: { touched, error, submitFailed } }) => (
+const AttributesGrid = ({ fields }) => (
   <>
     <div className="row row--no-gutter middle-xs">
       <div className={`col-xs-5 col--no-gutter ${style.head}`}>

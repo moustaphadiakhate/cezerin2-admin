@@ -14,10 +14,10 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
 // Must use the icons explicidly to keep right
 import ExpandLess from "@material-ui/icons/ExpandLess"
 import ExpandMore from "@material-ui/icons/ExpandMore"
+import { Link } from "@reach/router"
 import React from "react"
-import { Link } from "react-router-dom"
 import messages from "../../../lib/text"
-import style from "./style.sass"
+import style from "./style.module.sass"
 // Must use the icons explicidly to keep right
 
 // Must use the icons explicidly to keep right

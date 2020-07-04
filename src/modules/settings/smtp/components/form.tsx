@@ -2,7 +2,7 @@ import { Button, Paper, TextField } from "@material-ui/core"
 import React, { useEffect } from "react"
 import { Field, reduxForm } from "redux-form"
 import messages from "../../../../lib/text"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const EmailSettings = (
   props: Readonly<{ handleSubmit; pristine; submitting; onLoad }>

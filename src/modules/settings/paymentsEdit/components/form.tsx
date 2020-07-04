@@ -13,7 +13,7 @@ import PaymentGateway from "../../../../modules/settings/paymentGateway"
 import { AVAILABLE_PAYMENT_GATEWAYS } from "../../../../modules/settings/paymentGateway/availablePaymentGateways"
 import { CustomToggle } from "../../../../modules/shared/form"
 import SelectShippingMethodsField from "./selectShipping.js"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const validate = values => {
   const errors = {}

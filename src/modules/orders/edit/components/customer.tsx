@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import * as helper from "../../../../lib/helper"
 import messages from "../../../../lib/text"
 import ShippingAddressForm from "./shippingAddressForm.js"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const getShippingFieldLabel = ({ label, key }) =>
   label && label.length > 0 ? label : helper.getOrderFieldLabelByKey(key)

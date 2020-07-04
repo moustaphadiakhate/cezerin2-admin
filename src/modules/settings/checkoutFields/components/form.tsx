@@ -5,7 +5,7 @@ import React, { useEffect } from "react"
 import { Field, reduxForm } from "redux-form"
 import { RadioButtonGroup, TextField } from "redux-form-material-ui"
 import messages from "../../../../lib/text"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const radioButtonStyle = {
   marginTop: 14,

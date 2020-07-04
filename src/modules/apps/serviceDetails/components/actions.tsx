@@ -2,7 +2,7 @@ import { Button, Paper } from "@material-ui/core"
 import React, { useState } from "react"
 import api from "../../../../lib/api"
 import messages from "../../../../lib/text"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const ActionComponent = props => {
   const [loading, setLoading] = useState(false)

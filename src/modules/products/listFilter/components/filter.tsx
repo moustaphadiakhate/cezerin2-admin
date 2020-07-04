@@ -2,7 +2,7 @@ import MenuItem from "material-ui/MenuItem"
 import SelectField from "material-ui/SelectField"
 import React from "react"
 import messages from "../../../../lib/text"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const Filter = ({
   filter,

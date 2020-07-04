@@ -4,7 +4,7 @@ import { reduxForm } from "redux-form"
 import messages from "../../../../lib/text"
 import { AVAILABLE_PAYMENT_GATEWAYS } from "../availablePaymentGateways"
 import GatewaySettings from "./gatewaySettings.js"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const EditPaymentGatewayForm = (
   props: Readonly<{ handleSubmit; pristine; submitting; onLoad; gateway }>

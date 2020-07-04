@@ -1,8 +1,8 @@
-import Divider from "material-ui/Divider"
+import { Divider } from "@material-ui/core"
 import React from "react"
 import * as helper from "../../../../lib/helper"
 import messages from "../../../../lib/text"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const OrderTotals = ({ order, settings }) => {
   const discountTotal = helper.formatCurrency(order.discount_total, settings)

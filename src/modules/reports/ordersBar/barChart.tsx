@@ -1,7 +1,7 @@
 import Paper from "material-ui/Paper"
 import React from "react"
 import { Bar } from "react-chartjs-2"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const BarChart = ({
   data,

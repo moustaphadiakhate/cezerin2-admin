@@ -8,7 +8,7 @@ import { DatePicker, TextField } from "redux-form-material-ui"
 import api from "../../../../../lib/api"
 import messages from "../../../../../lib/text"
 import { CustomToggle } from "../../../../../modules/shared/form"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const validate = values => {
   const errors = {}

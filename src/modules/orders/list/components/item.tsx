@@ -1,13 +1,13 @@
+import { Link } from "@reach/router"
 import Checkbox from "material-ui/Checkbox"
 import Divider from "material-ui/Divider"
 import FontIcon from "material-ui/FontIcon"
 import { ListItem } from "material-ui/List"
 import moment from "moment"
 import React from "react"
-import { Link } from "react-router-dom"
 import * as helper from "../../../../lib/helper"
 import messages from "../../../../lib/text"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const getOrderStateIcons = order => {
   const icons = []

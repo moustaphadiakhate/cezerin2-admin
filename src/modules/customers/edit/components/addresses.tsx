@@ -5,7 +5,7 @@ import React, { useState } from "react"
 import messages from "../../../../lib/text"
 import ConfirmationDialog from "../../../../modules/shared/confirmation"
 import AddressForm from "./addressForm.js"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const Address = ({ address }) => (
   <div className={style.address}>

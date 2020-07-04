@@ -2,7 +2,7 @@ import { Paper } from "@material-ui/core"
 import React, { useEffect } from "react"
 import OrderCustomer from "./customer"
 import OrderItems from "./items"
-import style from "./style.sass"
+import style from "./style.module.sass"
 import OrderSummary from "./summary"
 import OrderTotals from "./totals"
 

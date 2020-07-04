@@ -8,7 +8,7 @@ import api from "../../../../lib/api"
 import messages from "../../../../lib/text"
 import Editor from "../../../../modules/shared/editor"
 import { CustomToggle } from "../../../../modules/shared/form"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const TagsField = ({ input, placeholder }) => {
   const tagsArray = input.value && Array.isArray(input.value) ? input.value : []

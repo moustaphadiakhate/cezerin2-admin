@@ -1,16 +1,20 @@
-import Paper from "material-ui/Paper"
+import { Paper } from "@material-ui/core"
 import React from "react"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const AppDescription = ({
   name,
   description,
   coverUrl,
   developer,
-  enabled,
+}: {
+  name
+  description
+  coverUrl
+  developer
 }) => (
   <div style={{ maxWidth: 720, width: "100%" }}>
-    <Paper className="paper-box" zDepth={1}>
+    <Paper className="paper-box" elevation={1}>
       <div className={style.innerBox}>
         <div className="row">
           <div className="col-xs-4">

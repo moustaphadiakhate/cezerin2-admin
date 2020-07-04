@@ -3,7 +3,7 @@ import React from "react"
 import api from "../../../../lib/api"
 import messages from "../../../../lib/text"
 import ThemeSettings from "../../../../modules/settings/themeSettings"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const styles = {
   button: {

@@ -3,7 +3,7 @@ import RaisedButton from "material-ui/RaisedButton"
 import React from "react"
 import Dropzone from "react-dropzone"
 import messages from "../../../lib/text"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const MultiUploader = props => {
   const onDrop = files => {

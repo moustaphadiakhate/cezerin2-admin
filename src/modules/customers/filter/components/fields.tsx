@@ -2,8 +2,7 @@ import { MenuItem, Select } from "@material-ui/core"
 import Toggle from "material-ui/Toggle"
 import React from "react"
 import messages from "../../../../lib/text"
-import style from "./style.sass"
-// import style from "./style.module.sass"
+import style from "./style.module.sass"
 
 export default ({
   active,

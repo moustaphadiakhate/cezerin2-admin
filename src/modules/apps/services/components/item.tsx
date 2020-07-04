@@ -2,7 +2,7 @@ import { Card, CardMedia, CardTitle } from "material-ui/Card"
 import FontIcon from "material-ui/FontIcon"
 import React from "react"
 import { Link } from "react-router-dom"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const styles = {
   card: {

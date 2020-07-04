@@ -5,7 +5,7 @@ import { Field, reduxForm } from "redux-form"
 import { SelectField, TextField } from "redux-form-material-ui"
 import api from "../../../../lib/api"
 import messages from "../../../../lib/text"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const validate = values => {
   const errors = {}

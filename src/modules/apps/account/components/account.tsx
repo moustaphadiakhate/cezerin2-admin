@@ -3,7 +3,7 @@ import React from "react"
 import { Field, reduxForm } from "redux-form"
 import messages from "../../../../lib/text"
 import { CustomToggle } from "../../../../modules/shared/form"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const AccountForm = ({ handleSubmit, pristine, submitting }) => (
   <div style={{ maxWidth: 720, width: "100%" }}>

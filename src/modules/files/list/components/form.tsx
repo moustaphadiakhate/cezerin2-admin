@@ -7,7 +7,7 @@ import * as helper from "../../../../lib/helper"
 import messages from "../../../../lib/text"
 import DeleteConfirmation from "../../../../modules/shared/deleteConfirmation"
 import FileUploader from "./fileUploader"
-import style from "./style.sass"
+import style from "./style.module.sass"
 
 const iconButtonElement = (
   <IconButton touch>
