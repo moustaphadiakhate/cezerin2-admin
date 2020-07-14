@@ -65,7 +65,7 @@
     "slug": "^3.3.0",
     "stripe": "^8.68.0",
     "typescript": "~3.9.6",
-    "ws": "^7.3.0"
+    "ws": "^7.3.1"
   },
   "devDependencies": {
     "prettier": "^2.0.4"
