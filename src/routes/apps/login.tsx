@@ -40,7 +40,7 @@ const LoginForm = () => {
     auth.checkTokenFromUrl()
   }, [])
 
-  let response = null
+  let response
   if (isFetching) {
     response = (
       <div className="loginSuccessResponse">{messages.messages_loading}</div>

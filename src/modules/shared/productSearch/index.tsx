@@ -1,5 +1,4 @@
-import Dialog from "@material-ui/core/Dialog"
-import DialogActions from "@material-ui/core/DialogActions"
+import { Dialog, DialogActions } from "@material-ui/core"
 import FlatButton from "material-ui/FlatButton"
 import { Table, TableBody, TableRow, TableRowColumn } from "material-ui/Table"
 import TextField from "material-ui/TextField"
@@ -103,7 +102,7 @@ const ConfirmationDialog = props => {
   return (
     <Dialog
       title={title}
-      actionsContainerStyle={{ borderTop: "1px solid rgb(224, 224, 224)" }}
+      style={{ borderTop: "1px solid rgb(224, 224, 224)" }}
       modal={modal}
       open={open}
       onRequestClose={handleCancel}
